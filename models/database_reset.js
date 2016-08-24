@@ -14,7 +14,7 @@ var database_reset = function() {
 
 	function dropUserCoursesTable() {
 
-		var query = client.query('DROP TABLE user_courses');
+		var query = client.query('DROP TABLE IF EXISTS user_courses');
 		query.on('end', function() { 
 			dropCoursesTable();
 		});
@@ -23,7 +23,7 @@ var database_reset = function() {
 		});
 	}
 	function dropCoursesTable() {
-		var query = client.query('DROP TABLE courses');
+		var query = client.query('DROP TABLE IF EXISTS courses');
 		query.on('end', function() { 
 			dropUsersTable();
 		});
@@ -33,7 +33,7 @@ var database_reset = function() {
 	}
 
 	function dropUsersTable() {
-		var query = client.query('DROP TABLE users');
+		var query = client.query('DROP TABLE IF EXISTS users');
 		query.on('end', function() { 
 			addUsersTable();
 		});
