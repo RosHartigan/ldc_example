@@ -4,7 +4,11 @@ var router = express.Router();
 var promise = require('bluebird');
 
 var pgp = require('pg-promise')({ promiseLib: promise });
-var connectionString = 'postgres://postgres:q1w2e3@localhost:5432/ldc';
+
+var connectionString = process.env.DATABASE_URL || 'postgres://postgres:q1w2e3@localhost:5432/ldc';
+if( process.env.DATABASE_URL ) {
+	connectionString +=  '?ssl=true';
+}
 var db = pgp(connectionString);
 
 // API : Reset db
