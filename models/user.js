@@ -38,23 +38,25 @@ var User = (function(){
   // update or insert
   User.prototype.update_course_status = function (course_id, status) {   
     var _this = this;
-
-    var select_promise = this.db_pool.one(
+    
+    var select_promise = this.db_pool.oneOrNone(
         "select * from user_courses where user_id=$1 and course_id=$2", 
         [this.record.id,course_id])
     .then(function (data) {
-        // we found it: update
-        return this.db_pool.none(
-          "update users set status=$3 where user_id=$1 and course_id=$2", 
-          [this.record.id,course_id,status]);  
-      })
-    .catch(function (error) {
         // we didn't find it: insert
-        return _this.db_pool.none(
-          "insert into user_courses(user_id,course_id,status) values($1,$2,$3)", 
-          [_this.record.id,course_id, status]);   
+        if (data === null) {
+          return _this.db_pool.none(
+            "insert into user_courses(user_id,course_id,status) values($1,$2,$3)", 
+            [_this.record.id,course_id, status]);   
+        }
+        // we found it and status is different: update
+        else if (data.status !== status) {
+          return _this.db_pool.none(
+            "update user_courses set status=$3 where user_id=$1 and course_id=$2", 
+            [_this.record.id,course_id,status]);  
+        }
       });
-    
+
     return select_promise;
   }
 

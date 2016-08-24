@@ -71,7 +71,7 @@ var userQuery = function(user_id, res, thenFunction) {
 	.catch(function(error){
 		console.log(error.stack);
 		var status = ( error.name === "QueryResultError") ? 404 : 500;
-		res.status(status).send(error.name + ": " + error.message + "\n" + error.stack);
+		res.status(status).json(error.name + ": " + error.message + "\n" + error.stack);
 	});  
 }
 
