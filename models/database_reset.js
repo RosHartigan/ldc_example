@@ -1,8 +1,9 @@
 var database_reset = function() {
 
 	var pg = require('pg');
-	pg.defaults.ssl = true;
-
+	if( process.env.DATABASE_URL ) {
+		pg.defaults.ssl = true;
+	}
 	var connectionString = process.env.DATABASE_URL || 'postgres://postgres:q1w2e3@localhost:5432/ldc';
 
 	var client = new pg.Client(connectionString);
