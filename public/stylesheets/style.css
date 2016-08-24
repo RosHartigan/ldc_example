@@ -1,0 +1,23 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+button {
+	margin-right: 5px;
+}
+#returnError {
+	display:none;
+	color: red;
+}
+
+#returnJson {
+	display:none;
+	padding: 10px;
+	background-color: lightgray;
+	font-family: monospace;
+}
