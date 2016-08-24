@@ -7,6 +7,27 @@ var pgp = require('pg-promise')({ promiseLib: promise });
 var connectionString = 'postgres://postgres:q1w2e3@localhost:5432/ldc';
 var db = pgp(connectionString);
 
+// API : Reset db
+router.get('/db/reset', function(req, res, next) {
+	
+	try {
+	   	var db_reset = require('../models/database_reset.js'); 
+	   	// should convert this to promise based.
+	   	db_reset.on_error = function(e) {
+	   		res.status(500).send(e.name + ": " + e.message);
+	   	}
+	   	db_reset.on_complete = function() {
+			res.send("Database Reset");
+	   	}
+		db_reset(); 
+
+	}
+	catch (error) {
+		res.status(500).send(error.name + ": " + e.error);
+	}
+});
+
+
 // API : COURSES
 var Course = require('../models/course.js');
 
