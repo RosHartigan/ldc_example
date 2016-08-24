@@ -1,3 +1,15 @@
+
+$( document ).ready(function() {
+	var user_id = 1;
+	$("#users").on('change', function() {
+	    user_id = $(this).val()
+	    console.log($("#users").val());
+
+	});
+});
+
+
+
 function courseList() {
 	fetchJson("/api/courses", "get");
 }
