@@ -1,14 +1,4 @@
 
-$( document ).ready(function() {
-	var user_id = 1;
-	$("#users").on('change', function() {
-	    user_id = $(this).val()
-	    console.log($("#users").val());
-
-	});
-});
-
-
 
 function courseList() {
 	fetchJson("/api/courses", "get");
@@ -23,7 +13,7 @@ function userCourseList(userId, status) {
 }
 
 function userCourseAdd(userId, courseId) {
-	fetchJson("/api/users/"+userId+"/courses/"+courseId+"/enrolled", "post");
+	fetchJson("/api/users/"+userId+"/courses/"+courseId+"/status/enrolled", "post");
 }
 
 function userCourseDelete(userId, courseId) {

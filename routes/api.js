@@ -103,7 +103,7 @@ router.delete('/users/:user_id/courses/:course_id', function(req, res, next) {
 });
 
 /* Update user's course enrollment */
-router.post('/users/:user_id/courses/:course_id/:status', function(req, res, next) {
+router.post('/users/:user_id/courses/:course_id/status/:status', function(req, res, next) {
 	userQuery(req.params.user_id, res, function(user) {
 		return user.update_course_status(req.params.course_id,req.params.status).then(function(data) {
 			res.status(201).json("Course " + req.params.course_id + " for User " + req.params.user_id + " updated to " + req.params.status);
