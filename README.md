@@ -5,14 +5,23 @@
 Demonstrating simple user/course api. 
 
 ```
+// Get list of all courses
 GET 	/api/courses
 
-GET 	/api/users					// Get list of all users
-GET 	/api/users/:user_id			// Get info for specific user
-GET 	/api/users/:user_id/courses?status=:status	// Get list of courses for user with given enrollment status
+// Get list of all users
+GET 	/api/users			
 
-DELETE 	/api/users/:user_id/courses/:course_id	// Delete user's course enrollment
-POST 	/api/users/:user_id/courses/:course_id/status=:status	// Set user's course enrollment status
+// Get info for specific user
+GET 	/api/users/:user_id			
+
+// Get list of courses for user with given enrollment status
+GET 	/api/users/:user_id/courses?status=:status	
+
+// Delete user's course enrollment
+DELETE 	/api/users/:user_id/courses/:course_id	
+
+// Set user's course enrollment status
+POST 	/api/users/:user_id/courses/:course_id/status=:status	
 ```
 
 To install:
