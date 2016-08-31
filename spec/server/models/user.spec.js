@@ -30,8 +30,32 @@ describe("The User object", function() {
             done();
         })
         .catch(function(error){
-           expect(undefined).toBeDefined();
-          done();
+            console.log(error);
+            expect(undefined).toBeDefined();
+            done();
+        });  
+    });
+    it("should not return a user with id 0", function(done) {
+        var user_id = 0;
+        
+        User.getOne(db,user_id)
+        .then(function(user){
+            expect(user).toBeUndefined();
+            done();
+        })
+        .catch(function(error){
+            expect(undefined).toBeUndefined();
+            done();
         });  
     });
 });
+
+if (jasmine.Runner) {
+    var _finishCallback = jasmine.Runner.prototype.finishCallback;
+    jasmine.Runner.prototype.finishCallback = function () {
+        // Run the old finishCallback:
+        _finishCallback.bind(this)();
+
+        pgp.end(); // closing pg database application pool;
+    };
+}
