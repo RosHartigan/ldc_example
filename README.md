@@ -26,7 +26,7 @@ POST 	/api/users/:user_id/courses/:course_id/status=:status
 
 To install:
 
-Install [postgres](https://www.postgresql.org/download/)
+Install [postgres](https://www.postgresql.org/download/) and create empty database `ldc`.
 
 ```
 npm install

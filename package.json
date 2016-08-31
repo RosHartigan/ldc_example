@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "test": "./node_modules/.bin/jasmine-node spec/server"
+    "test": "./node_modules/.bin/jasmine-node spec/server",
+    "postinstall": "node models/database_reset.js"
   },
   "dependencies": {
     "bluebird": "^3.3.4",
